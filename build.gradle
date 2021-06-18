@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+}
+
+group 'me.whitehatd.BungeeCordPartyAndFriendsAddon'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://oss.sonatype.org/content/repositories/snapshots'
+    }
+    maven {
+        url = 'http://simonsator.de/repo'
+    }
+    mavenLocal()
+}
+
+dependencies {
+    compileOnly group: 'net.md-5', name: 'bungeecord-api', version: '1.16-R0.4'
+    compileOnly group: 'de.simonsator', name: 'BungeecordPartyAndFriends', version: '1.0.79'
+
+
+}
+shadowJar {
+    configurations = [project.configurations.compile]
+    destinationDir = file('C:/Users/Alex/Desktop/bungee 1.12/lobby/plugins')
+}
