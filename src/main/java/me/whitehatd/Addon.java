@@ -1,6 +1,7 @@
 package me.whitehatd;
 
 import com.google.common.io.ByteStreams;
+import de.simonsator.partyandfriends.api.PAFExtension;
 import de.simonsator.partyandfriends.api.events.command.JumpToFriendEvent;
 import de.simonsator.partyandfriends.api.pafplayers.PAFPlayerClass;
 import net.md_5.bungee.api.ChatColor;
@@ -13,7 +14,7 @@ import net.md_5.bungee.event.EventHandler;
 
 import java.io.*;
 
-public class Addon extends Plugin implements Listener {
+public class Addon extends PAFExtension implements Listener {
 
     public static Addon INSTANCE;
 
@@ -24,10 +25,10 @@ public class Addon extends Plugin implements Listener {
         PAFPlayerClass.setServerConnector(new Hook());
         getProxy().getPluginManager().registerListener(this, this);
 
-        if (!getDataFolder().exists()) {
-            getDataFolder().mkdir();
+        if (!getConfigFolder().exists()) {
+            getConfigFolder().mkdir();
         }
-        File configFile = new File(getDataFolder(), "config.yml");
+        File configFile = new File(getConfigFolder(), "config.yml");
         if (!configFile.exists()) {
             try {
                 configFile.createNewFile();
@@ -56,7 +57,7 @@ public class Addon extends Plugin implements Listener {
     public Configuration getConfig(){
         try {
             return ConfigurationProvider.getProvider(YamlConfiguration.class)
-                    .load(new File(getDataFolder(), "config.yml"));
+                    .load(new File(getConfigFolder(), "config.yml"));
         } catch (IOException e) {
             e.printStackTrace();
         }
