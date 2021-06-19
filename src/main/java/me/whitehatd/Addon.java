@@ -41,6 +41,7 @@ public class Addon extends PAFExtension implements Listener {
             }
         }
 
+        registerAsExtension();
         getProxy().getConsole().sendMessage(toColor("&aBungeeCordPartyAndFriends Jump Addon enabled! (Made by WhitehatD#6615)"));
     }
 
